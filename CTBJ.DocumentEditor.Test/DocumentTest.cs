@@ -29,8 +29,7 @@ namespace CTBJ.DocumentEditor.Test
 
             Position position = PositionFactory.getInstance().getPosition(1, 1);
 
-            Glyph glyph = new Glyph("a");
-            glyph.Color = Color.BLUE;
+            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
 
             document.add(position,glyph);
 

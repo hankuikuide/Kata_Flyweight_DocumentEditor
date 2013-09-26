@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Document.cs" />
     <Compile Include="Glyph.cs" />
+    <Compile Include="GlyphFactory.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="PositionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
