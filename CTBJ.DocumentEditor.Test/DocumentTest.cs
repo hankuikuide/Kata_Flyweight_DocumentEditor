@@ -29,9 +29,9 @@ namespace CTBJ.DocumentEditor.Test
 
             Position position = PositionFactory.getInstance().getPosition(1, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            string msg=document.add(position,glyph);
+            Response response=document.add(position,glyph);
 
-            Assert.AreEqual("leagal", msg);
+            Assert.AreEqual(Response.SUCCESS, response);
             Assert.AreEqual("a", document.getGlyphBy(position).Alphabet);
             Assert.AreEqual(Color.BLUE, document.getGlyphBy(position).Color);
         }
@@ -44,9 +44,9 @@ namespace CTBJ.DocumentEditor.Test
 
             Position position = PositionFactory.getInstance().getPosition(4, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            string msg=document.add(position, glyph);
+            Response response=document.add(position, glyph);
 
-            Assert.AreEqual("illeagal row", msg);
+            Assert.AreEqual(Response.INVALIDROW, response);
         }
 
         [TestMethod]
@@ -57,9 +57,9 @@ namespace CTBJ.DocumentEditor.Test
 
             Position position = PositionFactory.getInstance().getPosition(2, 50);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            string msg = document.add(position, glyph);
+            Response response = document.add(position, glyph);
 
-            Assert.AreEqual("illeagal col", msg);
+            Assert.AreEqual(Response.INVALIDCOL, response);
         }
 
     }
