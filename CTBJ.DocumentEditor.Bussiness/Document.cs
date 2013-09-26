@@ -31,9 +31,30 @@ namespace CTBJ.DocumentEditor.Bussiness
             this.cols = cols;
         }
 
-        public void add(Position position, Glyph glyph)
+        public string add(Position position, Glyph glyph)
         {
-            context.Add(position, glyph);
+            string msg = string.Empty;
+
+            if (position.X > 0 && position.X < this.rows)
+            {
+                if (position.Y > 0 && position.Y < this.Cols)
+                {
+                    context.Add(position, glyph);
+                    msg = "leagal";
+                }
+                else
+                {
+                    Console.WriteLine("列行不合法:{0}", position.Y);
+                    msg = "illeagal col";
+                }
+            }
+            else
+            {
+                Console.WriteLine("行不合法:{0}", position.X);
+                msg = "illeagal row";
+            }
+
+            return msg;
         }
 
         public Glyph getGlyphBy(Position position)

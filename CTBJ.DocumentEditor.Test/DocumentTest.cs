@@ -28,16 +28,39 @@ namespace CTBJ.DocumentEditor.Test
             document.initialize(3, 40);
 
             Position position = PositionFactory.getInstance().getPosition(1, 1);
-
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
+            string msg=document.add(position,glyph);
 
-            document.add(position,glyph);
-
-
+            Assert.AreEqual("leagal", msg);
             Assert.AreEqual("a", document.getGlyphBy(position).Alphabet);
             Assert.AreEqual(Color.BLUE, document.getGlyphBy(position).Color);
         }
 
+        [TestMethod]
+        public void SetGlyph_IlleagalRowTest()
+        {
+            Document document = new Document();
+            document.initialize(3, 40);
+
+            Position position = PositionFactory.getInstance().getPosition(4, 1);
+            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
+            string msg=document.add(position, glyph);
+
+            Assert.AreEqual("illeagal row", msg);
+        }
+
+        [TestMethod]
+        public void SetGlyph_IlleagalColTest()
+        {
+            Document document = new Document();
+            document.initialize(3, 40);
+
+            Position position = PositionFactory.getInstance().getPosition(2, 50);
+            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
+            string msg = document.add(position, glyph);
+
+            Assert.AreEqual("illeagal col", msg);
+        }
 
     }
 }
