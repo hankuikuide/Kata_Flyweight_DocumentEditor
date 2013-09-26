@@ -9,7 +9,19 @@ namespace CTBJ.DocumentEditor.Bussiness
     {
         private int x;
 
+        public int X
+        {
+            get { return x; }
+            private set { x = value; }
+        }
+
         private int y;
+
+        public int Y
+        {
+            get { return y; }
+            private set { y = value; }
+        }
 
         public Position(int x, int y)
         {

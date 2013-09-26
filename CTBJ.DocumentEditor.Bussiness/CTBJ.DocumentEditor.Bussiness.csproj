@@ -43,6 +43,7 @@
     <Compile Include="Document.cs" />
     <Compile Include="Glyph.cs" />
     <Compile Include="Position.cs" />
+    <Compile Include="PositionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
