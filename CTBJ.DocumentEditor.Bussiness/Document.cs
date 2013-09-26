@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CTBJ.DocumentEditor.Bussiness
 {
@@ -39,8 +40,16 @@ namespace CTBJ.DocumentEditor.Bussiness
             {
                 if (position.Y > 0 && position.Y < this.Cols)
                 {
-                    context.Add(position, glyph);
-
+                    //todo the Regex needs to be updated
+                    Regex r = new Regex("^[a-zA-Z,. $]");
+                    if (r.IsMatch(glyph.Alphabet))
+                    {
+                        context.Add(position, glyph);
+                    }
+                    else
+                    {
+                        response = Response.INVALIDALPHABET;
+                    }
                 }
                 else
                 {

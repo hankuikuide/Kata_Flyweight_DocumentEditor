@@ -9,6 +9,8 @@ namespace CTBJ.DocumentEditor.Bussiness
     {
         SUCCESS = 0,
         INVALIDROW,
-        INVALIDCOL
+        INVALIDCOL,
+        INVALIDALPHABET
+
     }
 }

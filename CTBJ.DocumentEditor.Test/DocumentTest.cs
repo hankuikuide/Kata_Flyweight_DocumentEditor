@@ -62,5 +62,17 @@ namespace CTBJ.DocumentEditor.Test
             Assert.AreEqual(Response.INVALIDCOL, response);
         }
 
+        [TestMethod]
+        public void SetGlyph_IlleagalAlphabet()
+        {
+            Document document = new Document();
+            document.initialize(3, 40);
+
+            Position position = PositionFactory.getInstance().getPosition(2, 2);
+            Glyph glyph = GlyphFactory.getInstance().getGlyph("?", Color.BLUE);
+            Response response = document.add(position, glyph);
+
+            Assert.AreEqual(Response.INVALIDALPHABET, response);
+        }
     }
 }
