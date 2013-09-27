@@ -32,38 +32,29 @@ namespace CTBJ.DocumentEditor.Bussiness
             this.maxCols = cols;
         }
 
-        public Response add(Position position, Glyph glyph)
+        public void add(Position position, Glyph glyph)
         {
-            Response response = 0;
 
-            if (position.X > 0 && position.X < this.maxRows)
+            if (position.X < 0 || position.X > this.maxRows)
             {
-                if (position.Y > 0 && position.Y < this.MaxCols)
-                {
-                    //todo the Regex needs to be updated
-                    Regex r = new Regex("^[a-zA-Z,. $]");
-                    if (r.IsMatch(glyph.Alphabet))
-                    {
-                        context.Add(position, glyph);
-                    }
-                    else
-                    {
-                        response = Response.INVALIDALPHABET;
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("列行不合法:{0}", position.Y);
-                    response = Response.INVALIDCOL;
-                }
-            }
-            else
-            {
-                Console.WriteLine("行不合法:{0}", position.X);
-                response = Response.INVALIDROW;
+                throw new MyException("Invalid Row");
             }
 
-            return response;
+            if (position.Y < 0 || position.Y > this.MaxCols)
+            {
+                throw new MyException("Invalid Col");               
+            }
+
+            //todo the Regex needs to be updated
+            Regex r = new Regex("^[a-zA-Z,. $]");
+            if (!r.IsMatch(glyph.Alphabet))
+            {
+                throw new MyException("Invalid Alphabet");               
+
+            }
+
+            context.Add(position, glyph);
+
         }
 
         public Glyph getGlyphBy(Position position)

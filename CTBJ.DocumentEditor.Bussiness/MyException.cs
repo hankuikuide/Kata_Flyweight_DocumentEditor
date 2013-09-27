@@ -5,12 +5,11 @@ using System.Text;
 
 namespace CTBJ.DocumentEditor.Bussiness
 {
-    public enum Response
+    public class MyException:Exception
     {
-        SUCCESS = 0,
-        INVALIDROW,
-        INVALIDCOL,
-        INVALIDALPHABET
-
+        public MyException(string message)
+            : base(message)
+        {
+        }
     }
 }

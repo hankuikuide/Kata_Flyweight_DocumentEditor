@@ -29,50 +29,77 @@ namespace CTBJ.DocumentEditor.Test
 
             Position position = PositionFactory.getInstance().getPosition(1, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            Response response=document.add(position,glyph);
+            document.add(position,glyph);
 
-            Assert.AreEqual(Response.SUCCESS, response);
             Assert.AreEqual("a", document.getGlyphBy(position).Alphabet);
             Assert.AreEqual(Color.BLUE, document.getGlyphBy(position).Color);
         }
 
         [TestMethod]
-        public void SetGlyph_IlleagalRowTest()
+        public void SetGlyph_InvalidRowTest()
         {
+            string message=string.Empty;
             Document document = new Document();
             document.initialize(3, 40);
 
             Position position = PositionFactory.getInstance().getPosition(4, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            Response response=document.add(position, glyph);
+            try
+            {
+                 document.add(position, glyph);
+            }
+            catch (MyException ex)
+            {
+                message = ex.Message;
+            }
 
-            Assert.AreEqual(Response.INVALIDROW, response);
+            Assert.AreEqual("Invalid Row", message);
         }
 
         [TestMethod]
-        public void SetGlyph_IlleagalColTest()
+        public void SetGlyph_InvalidColTest()
         {
+            string message = string.Empty;
+
             Document document = new Document();
             document.initialize(3, 40);
 
             Position position = PositionFactory.getInstance().getPosition(2, 50);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            Response response = document.add(position, glyph);
+            try
+            {
+                document.add(position, glyph);
+            }
+            catch (MyException ex)
+            {
+                message = ex.Message;
+            }
 
-            Assert.AreEqual(Response.INVALIDCOL, response);
+            Assert.AreEqual("Invalid Col", message);
+
         }
 
         [TestMethod]
-        public void SetGlyph_IlleagalAlphabet()
+        public void SetGlyph_InvalidAlphabet()
         {
+            string message = string.Empty;
+
             Document document = new Document();
             document.initialize(3, 40);
 
             Position position = PositionFactory.getInstance().getPosition(2, 2);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("?", Color.BLUE);
-            Response response = document.add(position, glyph);
+            try
+            {
+                document.add(position, glyph);
+            }
+            catch (MyException ex)
+            {
+                message = ex.Message;
+            }
 
-            Assert.AreEqual(Response.INVALIDALPHABET, response);
+            Assert.AreEqual("Invalid Alphabet", message);
+
         }
     }
 }
