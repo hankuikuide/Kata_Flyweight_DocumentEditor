@@ -68,6 +68,10 @@ namespace CTBJ.DocumentEditor.Bussiness
                 Console.ResetColor();
                 Console.ForegroundColor = (ConsoleColor)item.Value.Color;
                 Console.Write(item.Value.Alphabet);
+                if (item.Key.Y == this.maxCols)
+                {
+                    Console.Write(item.Value.Alphabet);
+                }
             }
         }
     }
