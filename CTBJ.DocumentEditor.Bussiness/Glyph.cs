@@ -29,7 +29,7 @@ namespace CTBJ.DocumentEditor.Bussiness
 
         private Color color;
 
-        public Color Color
+        virtual public Color Color
         {
             get { return color; }
             set { color = value; }

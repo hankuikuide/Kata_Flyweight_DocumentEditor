@@ -34,7 +34,7 @@ namespace CTBJ.DocumentEditor.Test
             //Position position = PositionFactory.getInstance().getPosition(1, 1);
 
             Mock<Glyph> mockGlyph = new Mock<Glyph>("a");
-            mockGlyph.Setup(mg => mg.Color = Color.BLUE).Returns(Color.BLUE);
+            mockGlyph.SetupProperty(mg => mg.Color,Color.BLUE);
             //Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
 
             document.add(mockPosition.Object, mockGlyph.Object);
