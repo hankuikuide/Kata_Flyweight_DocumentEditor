@@ -15,7 +15,7 @@ namespace CTBJ.DocumentEditor.Test
         {
             Document document = new Document();
 
-            document.initialize(3,40);
+            document.initialize(maxCols: 3, maxRows: 40);
 
             Assert.AreEqual(3, document.MaxRows);
             Assert.AreEqual(40, document.MaxCols);
@@ -25,7 +25,8 @@ namespace CTBJ.DocumentEditor.Test
         public void SetGlyphTest()
         {
             Document document = new Document();
-            document.initialize(3, 40);
+
+            document.initialize(maxCols: 3, maxRows: 40);
 
             Position position = PositionFactory.getInstance().getPosition(1, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
@@ -40,7 +41,7 @@ namespace CTBJ.DocumentEditor.Test
         {
             string message=string.Empty;
             Document document = new Document();
-            document.initialize(3, 40);
+            document.initialize(maxCols: 3, maxRows: 40);
 
             Position position = PositionFactory.getInstance().getPosition(4, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
@@ -62,7 +63,7 @@ namespace CTBJ.DocumentEditor.Test
             string message = string.Empty;
 
             Document document = new Document();
-            document.initialize(3, 40);
+            document.initialize(maxCols: 3, maxRows: 40);
 
             Position position = PositionFactory.getInstance().getPosition(2, 50);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
