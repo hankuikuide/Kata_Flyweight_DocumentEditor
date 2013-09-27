@@ -5,15 +5,17 @@ using System.Text;
 
 namespace CTBJ.DocumentEditor.Bussiness
 {
-    public enum Color
+    public enum Color:int
     {
-        REd=1,
+        RED=1,
         ORANGE,
         YELLOW,
         GREEN,
         BLUE,
         INDIGO,
-        VIOLET
+        VIOLET,
+        BLACK,
+        WHITE
     }
     public class Glyph
     {

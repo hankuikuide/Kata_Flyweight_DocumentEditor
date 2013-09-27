@@ -26,10 +26,10 @@ namespace CTBJ.DocumentEditor.Bussiness
 
         Dictionary<Position, Glyph> context = new Dictionary<Position, Glyph>();
 
-        public void initialize(int rows, int cols)
+        public void initialize(int maxRows, int maxCols)
         {
-            this.maxRows = rows;
-            this.maxCols = cols;
+            this.maxRows = maxRows;
+            this.maxCols = maxCols;
         }
 
         public void add(Position position, Glyph glyph)
@@ -49,8 +49,7 @@ namespace CTBJ.DocumentEditor.Bussiness
             Regex r = new Regex("^[a-zA-Z,. $]");
             if (!r.IsMatch(glyph.Alphabet))
             {
-                throw new MyException("Invalid Alphabet");               
-
+                throw new MyException("Invalid Alphabet");
             }
 
             context.Add(position, glyph);
@@ -60,6 +59,16 @@ namespace CTBJ.DocumentEditor.Bussiness
         public Glyph getGlyphBy(Position position)
         {
             return context[position];
+        }
+
+        public void print()
+        {
+            foreach (var item in this.context)
+            {
+                Console.ResetColor();
+                Console.ForegroundColor = (ConsoleColor)item.Value.Color;
+                Console.Write(item.Value.Alphabet);
+            }
         }
     }
 }

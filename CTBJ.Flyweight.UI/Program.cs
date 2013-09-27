@@ -1,116 +1,20 @@
 ﻿using System;
-using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text;
 using CTBJ.DocumentEditor.Bussiness;
-
-namespace CTBJ.DocumentEditor.Test
+namespace CTBJ.DocumentEditor.UserInterface
 {
-    [TestClass]
-    public class DocumentTest
+    class Program
     {
-        [TestMethod]
-        public void initializeTest()
-        {
-            Document document = new Document();
-
-            document.initialize(3,40);
-
-            Assert.AreEqual(3, document.MaxRows);
-            Assert.AreEqual(40, document.MaxCols);
-        }
-
-        [TestMethod]
-        public void SetGlyphTest()
-        {
-            Document document = new Document();
-            document.initialize(3, 40);
-
-            Position position = PositionFactory.getInstance().getPosition(1, 1);
-            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            document.add(position,glyph);
-
-            Assert.AreEqual("a", document.getGlyphBy(position).Alphabet);
-            Assert.AreEqual(Color.BLUE, document.getGlyphBy(position).Color);
-        }
-
-        [TestMethod]
-        public void SetGlyph_InvalidRowTest()
-        {
-            string message=string.Empty;
-            Document document = new Document();
-            document.initialize(3, 40);
-
-            Position position = PositionFactory.getInstance().getPosition(4, 1);
-            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            try
-            {
-                 document.add(position, glyph);
-            }
-            catch (MyException ex)
-            {
-                message = ex.Message;
-            }
-
-            Assert.AreEqual("Invalid Row", message);
-        }
-
-        [TestMethod]
-        public void SetGlyph_InvalidColTest()
+        static void Main(string[] args)
         {
             string message = string.Empty;
 
             Document document = new Document();
             document.initialize(3, 40);
 
-            Position position = PositionFactory.getInstance().getPosition(2, 50);
-            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            try
-            {
-                document.add(position, glyph);
-            }
-            catch (MyException ex)
-            {
-                message = ex.Message;
-            }
-
-            Assert.AreEqual("Invalid Col", message);
-
-        }
-
-        [TestMethod]
-        public void SetGlyph_InvalidAlphabet()
-        {
-            string message = string.Empty;
-
-            Document document = new Document();
-            document.initialize(3, 40);
-
-            Position position = PositionFactory.getInstance().getPosition(2, 2);
-            Glyph glyph = GlyphFactory.getInstance().getGlyph("?", Color.BLUE);
-            try
-            {
-                document.add(position, glyph);
-            }
-            catch (MyException ex)
-            {
-                message = ex.Message;
-            }
-
-            Assert.AreEqual("Invalid Alphabet", message);
-
-        }
-
-        [TestMethod]
-        public void addStringTest()
-        {
-            string message = string.Empty;
-
-            Document document = new Document();
-            document.initialize(3, 40);
-
-            Position position= null;
+            Position position = null;
             Glyph glyph = null;
 
             try
@@ -193,14 +97,15 @@ namespace CTBJ.DocumentEditor.Test
                 glyph = GlyphFactory.getInstance().getGlyph("t", Color.ORANGE);
                 document.add(position, glyph);
 
+
+                document.print();
+
+                Console.ReadLine();
             }
             catch (MyException ex)
             {
-                message = ex.Message;
+                throw new MyException("something wrong happened");
             }
-
-            Assert.AreEqual("", message);
-
         }
     }
 }
