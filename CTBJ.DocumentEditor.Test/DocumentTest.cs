@@ -17,8 +17,8 @@ namespace CTBJ.DocumentEditor.Test
 
             document.initialize(3,40);
 
-            Assert.AreEqual(3, document.Rows);
-            Assert.AreEqual(40, document.Cols);
+            Assert.AreEqual(3, document.MaxRows);
+            Assert.AreEqual(40, document.MaxCols);
         }
 
         [TestMethod]

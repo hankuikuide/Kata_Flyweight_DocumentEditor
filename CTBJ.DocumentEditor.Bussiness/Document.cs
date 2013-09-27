@@ -8,37 +8,37 @@ namespace CTBJ.DocumentEditor.Bussiness
 {
     public class Document
     {
-        private int rows;
+        private int maxRows;
 
-        public int Rows
+        public int MaxRows
         {
-            get { return rows; }
-            private set { rows = value; }
+            get { return maxRows; }
+            private set { maxRows = value; }
         }
 
-        private int cols;
+        private int maxCols;
 
-        public int Cols
+        public int MaxCols
         {
-            get { return cols; }
-            private set { cols = value; }
+            get { return maxCols; }
+            private set { maxCols = value; }
         }
 
         Dictionary<Position, Glyph> context = new Dictionary<Position, Glyph>();
 
         public void initialize(int rows, int cols)
         {
-            this.rows = rows;
-            this.cols = cols;
+            this.maxRows = rows;
+            this.maxCols = cols;
         }
 
         public Response add(Position position, Glyph glyph)
         {
             Response response = 0;
 
-            if (position.X > 0 && position.X < this.rows)
+            if (position.X > 0 && position.X < this.maxRows)
             {
-                if (position.Y > 0 && position.Y < this.Cols)
+                if (position.Y > 0 && position.Y < this.MaxCols)
                 {
                     //todo the Regex needs to be updated
                     Regex r = new Regex("^[a-zA-Z,. $]");
