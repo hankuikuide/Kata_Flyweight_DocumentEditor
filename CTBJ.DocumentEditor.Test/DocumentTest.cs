@@ -4,36 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CTBJ.DocumentEditor.Bussiness;
+using Moq;
 
 namespace CTBJ.DocumentEditor.Test
 {
     [TestClass]
     public class DocumentTest
     {
+     
         [TestMethod]
         public void initializeTest()
         {
             Document document = new Document();
 
-            document.initialize(maxCols: 3, maxRows: 40);
+            document.initialize(maxRows: 3, maxCols: 40);
 
             Assert.AreEqual(3, document.MaxRows);
             Assert.AreEqual(40, document.MaxCols);
         }
 
         [TestMethod]
-        public void SetGlyphTest()
+        public void SetGlyphInPositionTest()
         {
             Document document = new Document();
 
-            document.initialize(maxCols: 3, maxRows: 40);
+            document.initialize(maxRows: 3, maxCols: 40);
 
-            Position position = PositionFactory.getInstance().getPosition(1, 1);
-            Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
-            document.add(position,glyph);
+            Mock<Position> mockPosition = new Mock<Position>(1, 1 );
+            //Position position = PositionFactory.getInstance().getPosition(1, 1);
 
-            Assert.AreEqual("a", document.getGlyphBy(position).Alphabet);
-            Assert.AreEqual(Color.BLUE, document.getGlyphBy(position).Color);
+            Mock<Glyph> mockGlyph = new Mock<Glyph>("a");
+            mockGlyph.Setup(mg => mg.Color = Color.BLUE).Returns(Color.BLUE);
+            //Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
+
+            document.add(mockPosition.Object, mockGlyph.Object);
+
+            Assert.AreEqual("a", document.getGlyphBy(mockPosition.Object).Alphabet);
+            Assert.AreEqual(Color.BLUE, document.getGlyphBy(mockPosition.Object).Color);
         }
 
         [TestMethod]
@@ -41,7 +48,7 @@ namespace CTBJ.DocumentEditor.Test
         {
             string message=string.Empty;
             Document document = new Document();
-            document.initialize(maxCols: 3, maxRows: 40);
+            document.initialize(maxRows: 3, maxCols: 40);
 
             Position position = PositionFactory.getInstance().getPosition(4, 1);
             Glyph glyph = GlyphFactory.getInstance().getGlyph("a", Color.BLUE);
