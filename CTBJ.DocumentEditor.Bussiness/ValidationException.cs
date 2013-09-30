@@ -5,9 +5,9 @@ using System.Text;
 
 namespace CTBJ.DocumentEditor.Bussiness
 {
-    public class MyException:Exception
+    public class ValidationException:Exception
     {
-        public MyException(string message)
+        public ValidationException(string message)
             : base(message)
         {
         }

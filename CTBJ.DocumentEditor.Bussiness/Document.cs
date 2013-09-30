@@ -37,21 +37,20 @@ namespace CTBJ.DocumentEditor.Bussiness
 
             if (position.X < 0 || position.X > this.maxRows)
             {
-                throw new MyException("Invalid Row");
+                throw new ValidationException("Invalid Row");
             }
 
             if (position.Y < 0 || position.Y > this.MaxCols)
             {
-                throw new MyException("Invalid Col");               
+                throw new ValidationException("Invalid Col");               
             }
 
             //todo the Regex needs to be updated
-            Regex r = new Regex("^[a-zA-Z,. $]");
-            if (!r.IsMatch(glyph.Alphabet))
+            if (!new Regex("^[a-zA-Z,. $]").IsMatch(glyph.Alphabet))
             {
-                throw new MyException("Invalid Alphabet");
+                throw new ValidationException("Invalid Alphabet");                
             }
-
+            
             context.Add(position, glyph);
 
         }

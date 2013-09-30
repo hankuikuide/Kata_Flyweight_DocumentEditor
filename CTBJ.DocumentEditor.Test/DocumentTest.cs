@@ -56,7 +56,7 @@ namespace CTBJ.DocumentEditor.Test
             {
                  document.add(position, glyph);
             }
-            catch (MyException ex)
+            catch (ValidationException ex)
             {
                 message = ex.Message;
             }
@@ -78,7 +78,7 @@ namespace CTBJ.DocumentEditor.Test
             {
                 document.add(position, glyph);
             }
-            catch (MyException ex)
+            catch (ValidationException ex)
             {
                 message = ex.Message;
             }
@@ -101,7 +101,7 @@ namespace CTBJ.DocumentEditor.Test
             {
                 document.add(position, glyph);
             }
-            catch (MyException ex)
+            catch (ValidationException ex)
             {
                 message = ex.Message;
             }
@@ -202,7 +202,7 @@ namespace CTBJ.DocumentEditor.Test
                 document.add(position, glyph);
 
             }
-            catch (MyException ex)
+            catch (ValidationException ex)
             {
                 message = ex.Message;
             }

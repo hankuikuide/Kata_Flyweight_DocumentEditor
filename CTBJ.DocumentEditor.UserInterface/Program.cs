@@ -102,9 +102,9 @@ namespace CTBJ.DocumentEditor.UserInterface
 
                 Console.ReadLine();
             }
-            catch (MyException ex)
+            catch (ValidationException ex)
             {
-                throw new MyException("something wrong happened");
+                Console.WriteLine("something wrong happened:{0}",ex.Message);
             }
         }
     }
