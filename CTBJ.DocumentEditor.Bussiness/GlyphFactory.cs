@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 
 namespace CTBJ.DocumentEditor.Bussiness
 {
     public class GlyphFactory
     {
-        List<Glyph> glyphs = new List<Glyph>();
+
+        private Hashtable glyphs = new Hashtable();
 
         private static GlyphFactory factory = new GlyphFactory();
 
@@ -22,19 +24,14 @@ namespace CTBJ.DocumentEditor.Bussiness
         public Glyph getGlyph(string alphabet, Color color)
         {
             //首先在缓存中查找对象
-            foreach (var item in glyphs)
+            if (glyphs.ContainsKey(alphabet))
             {
-                if (item.Alphabet == alphabet)
-                {
-                    //在缓存中命中对象后还原对象的外部属性
-                    item.Color = color;
-                    return item;                    
-                }
+                return (Glyph)glyphs[alphabet];
             }
             //如果缓存未命中则新建对象并加入缓存
             Glyph glyph = new Glyph(alphabet);
             glyph.Color = color;
-            glyphs.Add(glyph);
+            glyphs.Add(alphabet,glyph);
 
             return glyph;
         }
