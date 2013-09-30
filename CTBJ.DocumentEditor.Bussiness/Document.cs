@@ -69,7 +69,7 @@ namespace CTBJ.DocumentEditor.Bussiness
                 Console.Write(item.Value.Alphabet);
                 if (item.Key.Y == this.maxCols)
                 {
-                    Console.Write(item.Value.Alphabet);
+                    Console.WriteLine();
                 }
             }
         }
