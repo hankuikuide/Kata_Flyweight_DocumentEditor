@@ -70,8 +70,8 @@ namespace CTBJ.DocumentEditor.Test
         [TestMethod()]
         public void PositionConstructorTest()
         {
-            int x = 0; // TODO: 初始化为适当的值
-            int y = 0; // TODO: 初始化为适当的值
+            int x = 0; 
+            int y = 0;
             Position target = new Position(x, y);
             Assert.IsNotNull(target);
         }

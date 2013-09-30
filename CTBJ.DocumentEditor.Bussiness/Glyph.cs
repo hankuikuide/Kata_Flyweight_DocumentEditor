@@ -39,5 +39,17 @@ namespace CTBJ.DocumentEditor.Bussiness
         {
             this.alphabet = alphabet;
         }
+
+        //public override bool Equals(object obj)
+        //{
+        //    Glyph glyph = obj as Glyph;
+
+        //    return this.alphabet == glyph.alphabet && this.color == glyph.color;
+        //}
+
+        //public override int GetHashCode()
+        //{
+        //    return this.GetHashCode();
+        //}
     }
 }
